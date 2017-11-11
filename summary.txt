@@ -1,0 +1,4 @@
+The single thread server should actually run faster than the muli-threaed server with a very small number of clients
+since the multithreaded server has the overhead of creating threads which the schoclient does not. 
+However, once the number of clients increases the multi-threaded server will perform faster.
+
