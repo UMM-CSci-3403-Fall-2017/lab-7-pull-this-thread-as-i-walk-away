@@ -27,9 +27,8 @@ public class EchoClient {
 				while(stdIn.read(input) != -1){
 					out.write(input);
 				}
+				out.flush();
 				this.socket.shutdownOutput();
-				out.close();
-				stdIn.close();
 			} catch (IOException e) {
 				System.out.println("Ayy lmao how did I end up here. :(");
 				e.printStackTrace();
@@ -54,7 +53,6 @@ public class EchoClient {
 				}
 				System.out.flush();
 				socket.close();
-				in.close();
 			} catch (IOException e) {
 				System.out.println("Ayy lmao how did I end up here. :(");
 				e.printStackTrace();
@@ -74,7 +72,6 @@ public class EchoClient {
 		ServerWriter writer = new ServerWriter(socket);
 		reader.start();
 		writer.start();
-		System.out.flush();
 	}
 	
 }

@@ -12,10 +12,12 @@ public class EchoServer {
 	public static final int PORT_NUMBER = 6013;
 	
 	private static class ClientWriter extends Thread{
+		Socket socket;
 		private InputStream in;
 		private OutputStream out;
 		
 		public ClientWriter(Socket socket) throws IOException{
+			this.socket = socket;
 			this.in = socket.getInputStream();
 			this.out = socket.getOutputStream();
 		}
@@ -26,6 +28,8 @@ public class EchoServer {
 				while(in.read(output) != -1){
 					out.write(output);
 				}
+				out.flush();
+				socket.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
